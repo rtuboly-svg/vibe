@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hogyan érkeztünk az iskolába?</title>
+  <style>
+    :root{--bg:#f7fbff;--card:#fff;--accent:#0ea5e9;--muted:#6b7280}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:var(--bg);color:#07203a}
+    .wrap{max-width:960px;margin:28px auto;padding:18px}
+    header{display:flex;align-items:center;gap:12px}
+    h1{margin:0;font-size:20px}
+    p{margin:6px 0;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:16px;margin-top:16px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 20px rgba(4,10,18,0.06)}
+    .big-btns{display:flex;gap:8px}
+    button{cursor:pointer;border:0;padding:12px 14px;border-radius:10px;font-weight:700}
+    .car{background:linear-gradient(90deg,#fef3c7,#fff7ed)}
+    .walk{background:linear-gradient(90deg,#dcfce7,#f0fff4)}
+    .bus{background:linear-gradient(90deg,#ede9fe,#f8f5ff)}
+    .muted{color:var(--muted)}
+    .counts{display:flex;gap:8px;margin-top:12px}
+    .count{flex:1;padding:10px;border-radius:10px;background:#fbfdff;text-align:center}
+    canvas{width:100%;height:auto}
+    .controls{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    input[type=number]{width:100px;padding:8px;border-radius:8px;border:1px solid #e6eef5}
+    .small{font-size:13px;color:var(--muted)}
+    footer{margin-top:12px;font-size:13px;color:var(--muted)}
+    @media(max-width:880px){.grid{grid-template-columns:1fr}.card{margin-bottom:12px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Hogyan érkeztünk az iskolába?</h1>
+        <p class="muted">Válaszd ki az érkezés módját — a diagramok automatikusan frissülnek.</p>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <div class="big-btns">
+          <button class="car" id="btnCar">🚗 Autóval</button>
+          <button class="walk" id="btnWalk">🚶‍♀️ Gyalog</button>
+          <button class="bus" id="btnBus">🚌 Busszal</button>
+        </div>
+
+        <div class="counts" aria-live="polite">
+          <div class="count"><div class="small">Autó</div><div id="countCar">0</div></div>
+          <div class="count"><div class="small">Gyalog</div><div id="countWalk">0</div></div>
+          <div class="count"><div class="small">Busz</div><div id="countBus">0</div></div>
+        </div>
+
+        <div class="controls">
+          <label class="small">Manuális beállítás: </label>
+          <input type="number" id="setCar" min="0" placeholder="Autó" />
+          <input type="number" id="setWalk" min="0" placeholder="Gyalog" />
+          <input type="number" id="setBus" min="0" placeholder="Busz" />
+          <button id="applySet">Alkalmaz</button>
+          <button id="resetBtn" class="small">Nullázás</button>
+        </div>
+
+        <p class="small muted" style="margin-top:10px">Az adatok a böngésződben elmentésre kerülnek (localStorage). A grafikonok: kördiagram és oszlopdiagram.</
